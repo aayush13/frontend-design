@@ -4,8 +4,8 @@ export const UserBarContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
-    margin-bottom: 5%;
-    
+    margin-bottom: 8.25%;
+    height: 5em;
 `;
 
 export const AvatarIcon = styled.div``;

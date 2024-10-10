@@ -21,6 +21,8 @@ export const Button = styled.button`
             `;
             case 'pagination':
                 return `
+                  height: 2.5em;
+                  width: 2.25em;
                   border: none;
                   background: none;
                   ${props.active ? `
@@ -31,6 +33,8 @@ export const Button = styled.button`
                 `;
                 case 'arrow':
                     return `
+                      height: 2.5em; 
+                      width: 2.25em; 
                       background: none;
                       border-radius: 5px 0px 0px 5px;
                     `;
