@@ -1,7 +1,9 @@
-import * as S from "./styles";
+import {Input} from "./styles";
 
-const InputField = () => {
-  return <input />;
+const InputField = (props) => {
+  return (
+    <Input type={props.type}/>
+  );
 };
 
 export default InputField;
