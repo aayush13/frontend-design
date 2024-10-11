@@ -6,4 +6,11 @@ export const PaginationControlContainer = styled.div`
     flex-direction: row;
     justify-content: center;
 `;
-export const PaginationControl = styled.div``;
+export const PaginationControl = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+`;
+
+export const PageNumberButton = styled.div``;

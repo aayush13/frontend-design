@@ -5,7 +5,6 @@ export const CardContainer = styled.div`
     flex-direction: column;
     width:100%;
     padding: 2em 0em;
-    // border: thin solid black;
 `;
 
 export const DateContainer = styled.div`

@@ -73,7 +73,7 @@ const SearchEngine = () => {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    document.getElementById("page-"+(newPage-1)).focus()
+   
   };
 
   return (
@@ -88,7 +88,7 @@ const SearchEngine = () => {
             <SearchBar />
           </InputFieldContainer>
           <SearchButtonContainer>
-            <Button type="primary" label="Search" />
+            <Button type="primary" label="Search"/>
           </SearchButtonContainer>
         </SearchContainer>
         <FilterContainer>

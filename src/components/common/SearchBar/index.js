@@ -1,7 +1,7 @@
-import Dropdown from "../../common/Dropdown";
+
 import InputField from "../../common/InputFIeld";
 const SearchBar = () => {
-  return <InputField type="search" />;
+  return <InputField type="search" placeholder="Search"/>;
 };
 
 export default SearchBar;

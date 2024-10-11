@@ -6,11 +6,11 @@ const UserBar = () => {
 
     return (
         <UserBarContainer>
-            <AvatarIcon>
+            <AvatarIcon data-testid={"avatar"}>
                 <Avatar name={username} round={true} color="#9EC59B" size="48"/>
             </AvatarIcon>
             <UserName>
-                <section>{username}</section>
+                <section data-testid={"username"}>{username}</section>
             </UserName>
         </UserBarContainer>
     )

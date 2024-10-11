@@ -28,7 +28,7 @@ const Footer = () => {
       <FooterFrame>
         <CompanyDetails>
             <img src="/logo_full.svg" width="100%" />
-            <Tagline>Justice for all.</Tagline>
+            <Tagline data-testid="tagline">Justice for all.</Tagline>
             <Contact>
                 <Email>hello@courtcorrect.com</Email>
                 <AddressLine>33 Percy St, London, W1T 2DF</AddressLine>

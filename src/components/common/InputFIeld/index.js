@@ -2,7 +2,7 @@ import {Input} from "./styles";
 
 const InputField = (props) => {
   return (
-    <Input type={props.type}/>
+    <Input type={props.type} placeholder={props.placeholder}/>
   );
 };
 
