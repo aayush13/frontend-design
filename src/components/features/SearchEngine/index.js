@@ -55,16 +55,18 @@ const SearchEngine = () => {
   const num = [
     { value: 5, label: "5" },
   ];
+
   useEffect(() => {
     getPageData();
   }, []);
 
 
   const getPageData = () => {
-    const data = getSearchData()
-    setData(data);
-    setShowData(data)
-    setTotalPages( Math.ceil(data.length / itemsPerPage))
+    const resultData = getSearchData()
+    setData(resultData);
+    setShowData(resultData);
+    console.log(Math.ceil(resultData.length / itemsPerPage))
+    setTotalPages(Math.ceil(resultData.length / itemsPerPage))
   };
 
   // get unique value for dropdown
@@ -78,23 +80,24 @@ const SearchEngine = () => {
   const filterTicket = async() => {
     let filterData = data
     if(!company && !category && ! decision && !selectedDate) {
-      setTotalPages( Math.ceil(data.length / itemsPerPage))
-      return data;
+      return 0;
+    } else {
+      if(company) {
+        filterData = filterData.filter(item => item.company === company.value);
+      }
+      if(decision) {
+        filterData = filterData.filter(item => item.decision === decision.value);
+      }
+      if(category) {
+        filterData = filterData.filter(item => item.category === category.value);
+      }
+      if(selectedDate) {
+        filterData = filterData.filter(item => item.date === selectedDate.toISOString().split('T')[0]);
+      }
+      setTotalPages( Math.ceil(filterData.length / itemsPerPage))
+      setShowData(filterData);
     }
-    if(company) {
-      filterData = filterData.filter(item => item.company === company.value);
-    }
-    if(decision) {
-      filterData = filterData.filter(item => item.decision === decision.value);
-    }
-    if(category) {
-      filterData = filterData.filter(item => item.category === category.value);
-    }
-    if(selectedDate) {
-      filterData = filterData.filter(item => item.date === selectedDate.toISOString().split('T')[0]);
-    }
-    setTotalPages( Math.ceil(filterData.length / itemsPerPage))
-    setShowData(filterData);
+    
   }
 
 
