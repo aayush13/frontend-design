@@ -9,10 +9,12 @@ const Dropdown = (props) => {
   return <Select
       className={props.name}
       classNamePrefix="select"
-      defaultValue={props.name}
+      defaultValue={props.default || ''}
       isClearable={isClearable}
       isSearchable={isSearchable}
+      onChange={props.onChange}
       name={props.name}
+      value={props.value}
       placeholder={props.placeholder}
       options={props.options}/>;
 };

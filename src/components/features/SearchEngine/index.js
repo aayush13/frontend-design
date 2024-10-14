@@ -24,7 +24,7 @@ import {
   SizeDropdown,
   SortDropdown,
   Pagination,
-  ResultCounter
+  ResultCounter,
 } from "./styles";
 import UserBar from "../UserBar";
 import SearchBar from "../../common/SearchBar";
@@ -39,42 +39,78 @@ import { UserBarContainer } from "../UserBar/styles";
 const SearchEngine = () => {
   const [data, setData] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [showData, setShowData] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
+  const [category, setCategory] = useState(null);
+  const [decision, setDecision] = useState(null);
+  const [company, setCompany] = useState(null);
 
 
   const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
+    { value: "Category", label: "Category" },
+    { value: "Decision", label: "Decision" },
+    { value: "Company", label: "Company" },
   ];
   const num = [
-    { value: 1, label: "1" },
-    { value: 2, label: "2" },
-    { value: 3, label: "3" },
+    { value: 5, label: "5" },
   ];
   useEffect(() => {
     getPageData();
   }, []);
 
+  useEffect(() => {
+
+  }, [category])
+
   const getPageData = () => {
     setData(getSearchData());
+    setShowData(getSearchData())
   };
 
+  const getUniqueValues = (key) => {
+    const uniqueValues = [...new Set(data.map(item => item[key]))];
+    return uniqueValues.map(item => ({ value: item, label: item }));
+  };
 
-    const itemsPerPage = 5; 
-    // Calculate total pages
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-  
-    // Get current page items
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-  
+  const itemsPerPage = 5;
+  // Calculate total pages
+  const totalPages = Math.ceil(data.length / itemsPerPage);
 
-  const handlePageChange = (newPage) => {
+  // Get current page items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = showData.slice(indexOfFirstItem, indexOfLastItem);
+  
+  const uniqueCompanies = getUniqueValues('company');
+  const uniqueDecisions = getUniqueValues('decision');
+  const uniqueCategories = getUniqueValues('category');
+
+
+  const handlePageChange = newPage => {
     setCurrentPage(newPage);
-   
   };
+
+  const filterData = () => {
+    
+  }
+
+  const clearFilters = () => {
+    setShowData(data)
+    setCategory(null)
+    setCompany(null)
+    setDecision(null)
+    setSelectedDate(null)
+  }
+  const handleCategoryChange = (e) => {
+    console.log("Hello", e.value)
+    setCategory(e)
+  }
+  const handleCompanyChange = (e) => {
+    setCompany(e)
+  }
+  const handleDecisionChange = (e) => {
+    setDecision(e)
+  }
 
   return (
     <SearchEngineContainer>
@@ -88,59 +124,56 @@ const SearchEngine = () => {
             <SearchBar />
           </InputFieldContainer>
           <SearchButtonContainer>
-            <Button type="primary" label="Search"/>
+            <Button type="primary" label="Search" />
           </SearchButtonContainer>
         </SearchContainer>
         <FilterContainer>
           <FilterDiv>
-            <Dropdown placeholder="Category" name="category" options={options} isClearable={true} isSearchable={true} />
+            <Dropdown placeholder="Category" name="category" value={category} onChange= {(e) => handleCategoryChange(e)} options={uniqueCategories}  isSearchable={true} />
           </FilterDiv>
           <FilterDiv>
-            <Dropdown placeholder="Decision" name="decision" options={options} isClearable={true} isSearchable={true} />
+            <Dropdown placeholder="Decision" name="decision" value={decision} onChange= {(e) => handleDecisionChange(e)} options={uniqueDecisions}  isSearchable={true} />
           </FilterDiv>
           <FilterDiv>
-            <Dropdown placeholder="Company" name="company" options={options} isClearable={true} isSearchable={true} />
+            <Dropdown placeholder="Company" name="company" value={company} onChange= {(e) => handleCompanyChange(e)} options={uniqueCompanies} isSearchable={true} />
           </FilterDiv>
           <FilterDivDate>
-            <StyledDatePicker
-
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              placeholderText="Date"
-            />
+            <StyledDatePicker selected={selectedDate} onChange={date => setSelectedDate(date)} placeholderText="Date" />
           </FilterDivDate>
         </FilterContainer>
         <ClearFilter>
           <ClearButton>
-            <Button type="clear" label="Clear Filters" />
+            <Button type="clear" label="Clear Filters" onClick={()=> clearFilters()} />
           </ClearButton>
         </ClearFilter>
         <ResultHeaderContainer>
           <ResultTitleContainer>
             <ResultTitle>Results</ResultTitle>
-            <ResultCounter>Showing {indexOfFirstItem+1}-{indexOfLastItem} of {data.length}</ResultCounter>
+            <ResultCounter>
+              Showing {indexOfFirstItem + 1}-{indexOfLastItem} of {data.length}
+            </ResultCounter>
           </ResultTitleContainer>
           <ResultController>
             <SortDropdown>
-              <Dropdown name="sortBy" options={options} isClearable={true} isSearchable={true} />
+              <Dropdown placeholder="Sort By" name="sortBy" options={options} isClearable={true} isSearchable={true} />
             </SortDropdown>
             <SizeDropdown>
-              <Dropdown name="number" options={num} isClearable={true} isSearchable={true} />
+              <Dropdown placeholder="Size" default={num[0]} name="number" options={num} isClearable={false} isSearchable={true} />
             </SizeDropdown>
           </ResultController>
         </ResultHeaderContainer>
         <ResultCardContainer>
           {currentItems.map((item, index) => {
             return (
-              <NewCardContainer>
-                <Card item={item} key={index}/>
+              <NewCardContainer key={index}>
+                <Card item={item} key={index} />
                 <Separator />
               </NewCardContainer>
-            )
+            );
           })}
         </ResultCardContainer>
         <Pagination>
-          <PaginationController handlePageChange={handlePageChange} currentPage={currentPage} totalPages={totalPages}/>
+          <PaginationController handlePageChange={handlePageChange} currentPage={currentPage} totalPages={totalPages} />
         </Pagination>
       </MainFrame>
     </SearchEngineContainer>

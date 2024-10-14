@@ -13,7 +13,7 @@ export const DateContainer = styled.div`
 
 export const Date = styled.span`
     font-weight: 600;
-
+    font-size: 0.75em;
 `;
 
 export const TitleContainer = styled.div`
@@ -25,11 +25,13 @@ export const TitleContainer = styled.div`
 export const CardTitle = styled.h2`
     font-weight: 400;
     color: #26C281;
+    font-size: 1.625em;
 
 `;
 
 export const Description = styled.span`
     color: #6F7170;
+    font-size: 0.875em;
 `;
 
 export const DetailsContainer = styled.div`
@@ -48,10 +50,13 @@ export const DetailLabelContainer = styled.div`
 
 export const DetailLabel = styled.span`
     font-weight: 400;
+    margin-bottom: 0.25em;
+    font-size: 0.75em;
 `;
 
 export const DetailValue = styled.span`
     font-weight: 600;
+    font-size: 0.875em;
 `;
 
 export const LineContainer = styled

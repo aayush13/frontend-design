@@ -60,7 +60,7 @@ export const ClearFilter = styled.div`
     display: flex;
     flex-direction: row;
     justify-content:center;
-    margin-top: 2em;
+    margin: 2em 0em;
 `;
 
 export const ClearButton = styled.div`
@@ -77,11 +77,12 @@ export const ResultHeaderContainer = styled.div`
 `;
 export const ResultTitle = styled.h2`
     margin: 0em;
-
+    font-size: 1.75em;
 `;
 
 export const ResultCounter = styled.p `
     margin: 0em;
+    font-size: 0.875em;
 `;
 export const ResultTitleContainer= styled.div`
     display: flex;
