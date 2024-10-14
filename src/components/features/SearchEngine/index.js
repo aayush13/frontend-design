@@ -126,6 +126,7 @@ const SearchEngine = () => {
     setCompany(null)
     setDecision(null)
     setSelectedDate(null)
+    setTotalPages(Math.ceil(data.length / itemsPerPage))
   }
   
   const handleCategoryChange = (e) => {
