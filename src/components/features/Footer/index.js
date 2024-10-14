@@ -64,22 +64,22 @@ const Footer = () => {
         </CopyrightName>
         <SocialMedia>
             <MediaIcons>
-                <img src="/facebook.svg" width="100%" height="100%"/>
+                <img src="/facebook.svg" width="100%" height="100%" alt="facebook"/>
             </MediaIcons>
             <MediaIcons>
-                <img src="/twitter.svg" width="100%" height="100%"/>
+                <img src="/twitter.svg" width="100%" height="100%" alt="twitter"/>
             </MediaIcons>
             <MediaIcons>
-                <img src="/instagram.svg" width="100%" height="100%"/>
+                <img src="/instagram.svg" width="100%" height="100%" alt="insta"/>
             </MediaIcons>
             <MediaIcons>
-                <img src="/youtube.svg" width="100%" height="100%"/>
+                <img src="/youtube.svg" width="100%" height="100%" alt="youtube"/>
             </MediaIcons>
             <MediaIcons>
-                <img src="/linkedin.svg" width="100%" height="100%"/>
+                <img src="/linkedin.svg" width="100%" height="100%" alt="linkedin"/>
             </MediaIcons>
             <MediaIcons>
-                <img src="/tiktok.svg" width="100%" height="100%"/>
+                <img src="/tiktok.svg" width="100%" height="100%" alt="tiktok"/>
             </MediaIcons>
         </SocialMedia>
       </CopyrightDetails>

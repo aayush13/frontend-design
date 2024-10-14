@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import Button from "../Button";
 import { PaginationControl, PaginationControlContainer,PageNumberButton } from "./styles";
 const PaginationController = (props) => {
@@ -21,7 +21,7 @@ const PaginationController = (props) => {
                 id={"page-" + index}
                 onClick={() => props.handlePageChange(index + 1)}
                 label={index + 1}
-                active={index + 1 == props.currentPage}
+                active={index + 1 === props.currentPage}
                 
             />
           </PageNumberButton>

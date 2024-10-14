@@ -64,6 +64,7 @@ export const SearchLogo = styled.div`
     padding: 0.5em;
     margin-top: 1em;
     background-color: #E4F6ED;
+    border-radius: 4px;
 `;
 
 export const Settings = styled.div`
