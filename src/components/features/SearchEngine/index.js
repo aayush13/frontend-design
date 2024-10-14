@@ -44,8 +44,9 @@ const SearchEngine = () => {
   const [category, setCategory] = useState(null);
   const [decision, setDecision] = useState(null);
   const [company, setCompany] = useState(null);
+  const [totalPages, setTotalPages] = useState(0);
 
-
+  const itemsPerPage = 5;
   const options = [
     { value: "Category", label: "Category" },
     { value: "Decision", label: "Decision" },
@@ -58,13 +59,12 @@ const SearchEngine = () => {
     getPageData();
   }, []);
 
-  useEffect(() => {
-
-  }, [category])
 
   const getPageData = () => {
-    setData(getSearchData());
-    setShowData(getSearchData())
+    const data = getSearchData()
+    setData(data);
+    setShowData(data)
+    setTotalPages( Math.ceil(data.length / itemsPerPage))
   };
 
   const getUniqueValues = (key) => {
@@ -72,9 +72,28 @@ const SearchEngine = () => {
     return uniqueValues.map(item => ({ value: item, label: item }));
   };
 
-  const itemsPerPage = 5;
-  // Calculate total pages
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const filterTicket = async() => {
+    let filterData = data
+    if(!company && !category && ! decision && !selectedDate) {
+      setTotalPages( Math.ceil(data.length / itemsPerPage))
+      return data;
+    }
+    if(company) {
+      filterData = filterData.filter(item => item.company === company.value);
+    }
+    if(decision) {
+      filterData = filterData.filter(item => item.decision === decision.value);
+    }
+    if(category) {
+      filterData = filterData.filter(item => item.category === category.value);
+    }
+
+    setTotalPages( Math.ceil(filterData.length / itemsPerPage))
+    setShowData(filterData);
+  }
+  useEffect(() => {
+    filterTicket()
+  },[category,company,decision])
 
   // Get current page items
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -90,10 +109,6 @@ const SearchEngine = () => {
     setCurrentPage(newPage);
   };
 
-  const filterData = () => {
-    
-  }
-
   const clearFilters = () => {
     setShowData(data)
     setCategory(null)
@@ -101,15 +116,24 @@ const SearchEngine = () => {
     setDecision(null)
     setSelectedDate(null)
   }
+  
   const handleCategoryChange = (e) => {
-    console.log("Hello", e.value)
     setCategory(e)
+
   }
   const handleCompanyChange = (e) => {
     setCompany(e)
+    // let filterData =  !category && !decision ? data : showData;
+    // filterData = filterData.filter(item => item.company === e.value);
+    // setShowData(filterData);
+    // setTotalPages( Math.ceil(filterData.length / itemsPerPage))
   }
   const handleDecisionChange = (e) => {
     setDecision(e)
+    // let filterData =  !company && !category ? data : showData;
+    // filterData = filterData.filter(item => item.decision === e.value);
+    // setShowData(filterData);
+    // setTotalPages( Math.ceil(filterData.length / itemsPerPage))
   }
 
   return (
@@ -150,7 +174,7 @@ const SearchEngine = () => {
           <ResultTitleContainer>
             <ResultTitle>Results</ResultTitle>
             <ResultCounter>
-              Showing {indexOfFirstItem + 1}-{indexOfLastItem} of {data.length}
+              Showing {indexOfFirstItem + 1}-{indexOfLastItem} of {showData.length}
             </ResultCounter>
           </ResultTitleContainer>
           <ResultController>
