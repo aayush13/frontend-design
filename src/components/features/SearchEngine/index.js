@@ -34,7 +34,7 @@ import Dropdown from "../../common/Dropdown";
 import Card from "../../common/Card";
 import Separator from "../../common/Separator";
 import PaginationController from "../../common/PaginationController";
-import { UserBarContainer } from "../UserBar/styles";
+
 
 const SearchEngine = () => {
   const [data, setData] = useState([]);
@@ -87,13 +87,15 @@ const SearchEngine = () => {
     if(category) {
       filterData = filterData.filter(item => item.category === category.value);
     }
-
+    if(selectedDate) {
+      filterData = filterData.filter(item => item.date === selectedDate.toISOString().split('T')[0]);
+    }
     setTotalPages( Math.ceil(filterData.length / itemsPerPage))
     setShowData(filterData);
   }
   useEffect(() => {
     filterTicket()
-  },[category,company,decision])
+  },[category,company,decision, selectedDate])
 
   // Get current page items
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -123,17 +125,9 @@ const SearchEngine = () => {
   }
   const handleCompanyChange = (e) => {
     setCompany(e)
-    // let filterData =  !category && !decision ? data : showData;
-    // filterData = filterData.filter(item => item.company === e.value);
-    // setShowData(filterData);
-    // setTotalPages( Math.ceil(filterData.length / itemsPerPage))
   }
   const handleDecisionChange = (e) => {
     setDecision(e)
-    // let filterData =  !company && !category ? data : showData;
-    // filterData = filterData.filter(item => item.decision === e.value);
-    // setShowData(filterData);
-    // setTotalPages( Math.ceil(filterData.length / itemsPerPage))
   }
 
   return (
