@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavBar = styled.div`
     width: 6.75%;
-    
+    border-right: solid thin #D9D9D9;
 `;
 
 export const Menu = styled.div`
