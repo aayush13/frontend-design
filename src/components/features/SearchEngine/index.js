@@ -67,11 +67,14 @@ const SearchEngine = () => {
     setTotalPages( Math.ceil(data.length / itemsPerPage))
   };
 
+  // get unique value for dropdown
   const getUniqueValues = (key) => {
     const uniqueValues = [...new Set(data.map(item => item[key]))];
     return uniqueValues.map(item => ({ value: item, label: item }));
   };
 
+
+  // filter data based on values selected from dropdown
   const filterTicket = async() => {
     let filterData = data
     if(!company && !category && ! decision && !selectedDate) {
@@ -93,6 +96,8 @@ const SearchEngine = () => {
     setTotalPages( Math.ceil(filterData.length / itemsPerPage))
     setShowData(filterData);
   }
+
+
   useEffect(() => {
     filterTicket()
   },[category,company,decision, selectedDate])
@@ -111,6 +116,7 @@ const SearchEngine = () => {
     setCurrentPage(newPage);
   };
 
+  // clear all filter values
   const clearFilters = () => {
     setShowData(data)
     setCategory(null)
@@ -121,7 +127,6 @@ const SearchEngine = () => {
   
   const handleCategoryChange = (e) => {
     setCategory(e)
-
   }
   const handleCompanyChange = (e) => {
     setCompany(e)
