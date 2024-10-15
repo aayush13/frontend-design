@@ -1,4 +1,4 @@
-# Frontend Takehome Task
+# Frontend
 
 This project is a simple frontend web application built in React. The main functionality to implement is a single-page search engine, styled according to the provided Figma design.
 
@@ -13,8 +13,6 @@ Once completed, please upload your solution to a public GitHub repository and se
 - **React.js**: Latest version for building UI components.
 - **Styled-components**: For modular and reusable component styling.
 - **JavaScript (ES6+)**: For leveraging modern language features.
-
-Feel free to add other packages that enhance functionality or improve efficiency, but focus on using `styled-components` for CSS. **Note: Do not use Material UI or any similar CSS frameworks.**
 
 ## Project Structure
 
@@ -65,8 +63,3 @@ Ensure you have **Node.js** (v14 or later) and **npm** installed on your machine
    ```
 
 The React app should now be running at `http://localhost:3000`.
-
-## Additional Notes
-
-- If you encounter any issues or have questions, feel free to reach out.
-- Important: Do not make any Pull Requests to this repository. Instead, upload your final version to your own GitHub and share the link for review.
